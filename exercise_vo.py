@@ -14,7 +14,7 @@ print (calculation)
 answer1 = input ("Enter a Number ")
 answer2 = input ("Enter another number ")
 calculation= float(answer1) * float(answer2)
-print('f*{answer1} * {answer2} = {calculation})
+print('f*{answer1} * {answer2} = {calculation}')
 
 
 #Q3) CHange to suit exactly the output, 24 and 25

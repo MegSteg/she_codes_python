@@ -72,3 +72,29 @@ else:
         print ("you'll need a jumper today.")
 
 #nested statements
+
+letters = ["a","b","c","d"] #they index list items in order, so a=0, b=1 etc.
+letters[1]
+
+letters = ["a","b","c","d"] #they index list items in order, so a=0, b=1 etc.
+print(letters[3])
+print(letters[-1]) #will always give us the very last value no matter how many
+print(letters[-2]) #will give us second last letter
+print(letters[0:3]) #tells computer where to start 
+print(letters[0:3:1]) #shows starting index: when stopping( not inclusive of number stopping at): and increments of increase
+
+
+
+chilli_wishlist = ["igloo", "chicken", "donut toy","cardboard box"]
+# indexing
+print(len(chilli_wishlist))
+print(chilli_wishlist)
+print(type(chilli_wishlist))
+
+print(chilli_wishlist[3])
+print(chilli_wishlist[0])
+print(chilli_wishlist[1])
+print(chilli_wishlist[-1])
+print(chilli_wishlist[0:2])
+print(chilli_wishlist[1:3])
+chilli_wishlist[1] = 'carrot'
