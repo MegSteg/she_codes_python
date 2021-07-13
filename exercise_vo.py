@@ -4,13 +4,20 @@ answer2 = input ("Enter another number ")
 calculation= int(answer1) + int(answer2)
 print(str(calculation))
 
-#Q2)
+#Q1) COrrect because need .0 on numbers, so FLOAT
 answer1 = input ("Enter a Number ")
 answer2 = input ("Enter another number ")
-calculation= int(answer1) * int(answer2)
-print(str(calculation))
+calculation= float(answer1) + float(answer2)
+print (calculation)
 
-#Q3)
+#Q2)Changed to float and correct print
+answer1 = input ("Enter a Number ")
+answer2 = input ("Enter another number ")
+calculation= float(answer1) * float(answer2)
+print('f*{answer1} * {answer2} = {calculation})
+
+
+#Q3) CHange to suit exactly the output, 24 and 25
 answer1 = input ("How Many Kilometers? ")
 calculation1= int(answer1) * 1000
 calculation2= int(answer1) * 100000
