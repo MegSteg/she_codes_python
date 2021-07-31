@@ -17,4 +17,13 @@ foods = [
 #4print(foods[0:4])
 #5print(foods[-3:12])
 #6 confused
-1st = 
+
+def Extract(rock):
+    #return [foods[-1] for item in rock] #
+    for item in rock:
+       # print(item)
+        #print (type(item))
+        if type (item) == list: #== way of saying = , because = is assigning values
+            x = item[-1]
+    return x
+print(Extract(foods))
