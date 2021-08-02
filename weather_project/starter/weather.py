@@ -13,8 +13,10 @@ def format_temperature(temp):
     Returns:
         A string contain the temperature and "degrees celcius."
     """
-    #temp=str(temp)
+    temp=str(temp)
     return f"{temp}{DEGREE_SYBMOL}"
+
+    #not writing print, just doing 'return' alot. If you want to print must put outside the function (not indented)
 
 
 def convert_date(iso_string):
@@ -25,7 +27,15 @@ def convert_date(iso_string):
     Returns:
         A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
     """
-    pass
+    #have to define the iso string , so 'strip' the string to by putting in the codes from web
+    weekday = datetime.strftime 
+    day = datetime.strftime
+    month = datetime.strftime
+    year = datetime.strftime 
+    return (f"{weekday} {day} {month} {year}")
+
+#make sure indenting to keep 'in the function'
+
 
 
 
@@ -38,7 +48,10 @@ def convert_f_to_c(temp_in_farenheit):
     Returns:
         A float representing a temperature in degrees celcius, rounded to 1dp.
     """
-    pass
+
+    Celsius = (float(temp_in_farenheit) - 32) * 5.0/9.0 
+    return Celsius
+
 
 
 def calculate_mean(weather_data):
@@ -49,6 +62,8 @@ def calculate_mean(weather_data):
     Returns:
         A float representing the mean value.
     """
+
+    #mean_weather_data = sum(weather_data) / len(weather_data)
     pass
 
 
@@ -62,6 +77,8 @@ def load_data_from_csv(csv_file):
     """
     pass
 
+#make sure reading arg return and understanding what you need to do, dont jump ahead/ overcomplicate
+#when doing loop, if length of row is 0 than dont consider
 
 def find_min(weather_data):
     """Calculates the minimum value in a list of numbers.
@@ -94,7 +111,8 @@ def generate_summary(weather_data):
         A string containing the summary information.
     """
     pass
-
+#referencing above functions, check expected outputs
+#make sure outputting for all of the exmpales, so consider variable in number of days
 
 def generate_daily_summary(weather_data):
     """Outputs a daily summary for the given weather data.
@@ -105,3 +123,23 @@ def generate_daily_summary(weather_data):
         A string containing the summary information.
     """
     pass
+#referencing above functions, check expected outputs
+
+Weather_data = [
+['date','min','max'],
+['2020-06-19T07:00:00+08:00',47,46],
+['2020-06-20T07:00:00+08:00',51,67],
+['2020-06-21T07:00:00+08:00',58,72],
+['2020-06-22T07:00:00+08:00',59,71],
+['2020-06-23T07:00:00+08:00',52,71],
+['2020-06-24T07:00:00+08:00',52,67],
+['2020-06-25T07:00:00+08:00',48,66],
+['2020-06-26T07:00:00+08:00',53,66]
+]
+
+iso_string = '2020-06-19T07:00:00+08:00'
+print (convert_date(iso_string))
+#print(Weather_data)
+#can use to check all functions, make sure to comment or delet before running/ submitting tents
+#list of min or max temp, sometimes string so make sure int or float
+#
