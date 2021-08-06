@@ -1,5 +1,5 @@
 import csv
-from datetime import datetime
+from datetime import date, datetime
 
 DEGREE_SYBMOL = u"\N{DEGREE SIGN}C"
 
@@ -13,7 +13,6 @@ def format_temperature(temp):
     Returns:
         A string contain the temperature and "degrees celcius."
     """
-    temp=str(temp)
     return f"{temp}{DEGREE_SYBMOL}"
 
     #not writing print, just doing 'return' alot. If you want to print must put outside the function (not indented)
@@ -49,9 +48,8 @@ def convert_f_to_c(temp_in_farenheit):
         A float representing a temperature in degrees celcius, rounded to 1dp.
     """
 
-    Celsius = (int(temp_in_farenheit) - 32) * 5.0/9.0 
-    Rounded_Celsius = round(int(Celsius, 1.0)) #fix AssertionError: 32.22222222222222 != 32.2
-    return Rounded_Celsius
+    Celsius = round((float(temp_in_farenheit) - 32)*5/9,1)
+    return Celsius
 
 
 
@@ -63,8 +61,11 @@ def calculate_mean(weather_data):
     Returns:
         A float representing the mean value.
     """
+    total_v = 0
+    for total in weather_data:
+        total_v += float(total)
 
-    mean_weather_data = sum(str(weather_data)) / len(str(weather_data)) #unsupported operand type(s) for +: 'int' and 'str'
+    mean_weather_data = total_v/len(weather_data)
     return mean_weather_data
 
 
@@ -76,18 +77,14 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
-    import csv
-    open ; csv_file
-    reader = csv.reader(csv_file)
-    lists_from_csv = []
-    for row in reader:
-        lists_from_csv.append(row)
-    
-        return(lists_from_csv)
+    lists = []
+    with open(csv_file) as csv_file:
+        reader = csv.reader(csv_file, delimiter = ",")    
+    for reading, row in enumerate(reader):
+        if reading != 0 and len(row) != 0:
+            lists.append([row[0],int(row[1]), int(row[2])])
+        return(lists)
 
-
-#make sure reading arg return and understanding what you need to do, dont jump ahead/ overcomplicate
-#when doing loop, if length of row is 0 than dont consider
 
 def find_min(weather_data):
     """Calculates the minimum value in a list of numbers.
@@ -98,7 +95,7 @@ def find_min(weather_data):
         The minium value and it's position in the list.
     """
     minimum = min(weather_data)
-    min_index = weather_data.index(minimum)
+    min_index = weather_data.index (minimum)
     return (f"({minimum}, {min_index})")
 
 
@@ -110,8 +107,13 @@ def find_max(weather_data):
     Returns:
         The maximum value and it's position in the list.
     """
-    maximum= max(weather_data)
-    return (maximum)
+    if len(weather_data) == 0:
+        return()
+    for i in range(0,len(weather_data)):
+        max = round(float(max(weather_data)),1)
+        max1 = weather_data.reverse()
+        max1 = len(weather_data) - weather_data.index(max(weather_data)) -1
+        return(max, max1)
 
 
 def generate_summary(weather_data):
@@ -122,7 +124,31 @@ def generate_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+    day = 0
+
+    for rows in weather_data:
+        if len(rows) != 0:
+            day = day + 1
+
+
+    a = list(weather_data[1])
+    b = convert_f_to_c(a)
+    c = list(weather_data[2])
+    d = convert_f_to_c(c)
+    e = list(weather_data[0])
+    f = convert_date(e)
+    g = min(a)
+    h = max(c)
+    #return (b, d, f, g, h)
+    
+    summary = (f"The lowest temperature will be {generate_summary[0]}°C, and will occur on {generate_summary()}")
+    summary = (f"The highest temperature will be {generate_summary[1]}°C, and will occur on {generate_summary[2]}")
+    summary =  (f"The average low this week is {generate_summary[3]}°C")
+    summary = (f"The average high this week is {generate_summary[4]}°C")
+    
+    return (summary)
+
+
 #referencing above functions, check expected outputs
 #make sure outputting for all of the exmpales, so consider variable in number of days
 
@@ -134,7 +160,14 @@ def generate_daily_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+    summary = ""
+    for rows in weather_data:
+       summary += f"{convert_date(rows[0])} \n"
+       summary += f" Minimum Temperature: {format_temperature(convert_f_to_c(int(rows[1])))} \n"
+    summary += f" Maximum Temperature: {format_temperature(convert_f_to_c(int(rows[2])))}  \n"
+    summary += f"\n"
+    return summary 
+   
 #referencing above functions, check expected outputs
 
 #Weather_data = [
