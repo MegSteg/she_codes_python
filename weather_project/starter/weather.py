@@ -28,12 +28,12 @@ def convert_date(iso_string):
         A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
     """
     #have to define the iso string , so 'strip' the string to by putting in the codes from web
-    weekday = datetime.strftime 
-    day = datetime.strftime
-    month = datetime.strftime
-    year = datetime.strftime 
+    weekday = datetime.strptime(iso_string, "%Y-%m-%dt%H:%M:%S%z").strftime("%A")
+    day = datetime.strptime(iso_string, "%Y-%m-%dt%H:%M:%S%z") .strftime("%d")
+    month = datetime.strptime(iso_string, "%Y-%m-%dt%H:%M:%S%z") .strftime("%B")
+    year = datetime.strptime (iso_string, "%Y-%m-%dt%H:%M:%S%z") .strftime("%Y")
     return (f"{weekday} {day} {month} {year}")
-
+#descriptor 'strftime' for 'datetime.date' objects doesn't apply to a 'str' object??
 #make sure indenting to keep 'in the function'
 
 
@@ -49,8 +49,9 @@ def convert_f_to_c(temp_in_farenheit):
         A float representing a temperature in degrees celcius, rounded to 1dp.
     """
 
-    Celsius = (float(temp_in_farenheit) - 32) * 5.0/9.0 
-    return Celsius
+    Celsius = (int(temp_in_farenheit) - 32) * 5.0/9.0 
+    Rounded_Celsius = round(int(Celsius, 1.0)) #fix AssertionError: 32.22222222222222 != 32.2
+    return Rounded_Celsius
 
 
 
@@ -63,8 +64,8 @@ def calculate_mean(weather_data):
         A float representing the mean value.
     """
 
-    #mean_weather_data = sum(weather_data) / len(weather_data)
-    pass
+    mean_weather_data = sum(str(weather_data)) / len(str(weather_data)) #unsupported operand type(s) for +: 'int' and 'str'
+    return mean_weather_data
 
 
 def load_data_from_csv(csv_file):
@@ -75,7 +76,15 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
-    pass
+    import csv
+    open ; csv_file
+    reader = csv.reader(csv_file)
+    lists_from_csv = []
+    for row in reader:
+        lists_from_csv.append(row)
+    
+        return(lists_from_csv)
+
 
 #make sure reading arg return and understanding what you need to do, dont jump ahead/ overcomplicate
 #when doing loop, if length of row is 0 than dont consider
@@ -88,7 +97,9 @@ def find_min(weather_data):
     Returns:
         The minium value and it's position in the list.
     """
-    pass
+    minimum = min(weather_data)
+    min_index = weather_data.index(minimum)
+    return (f"({minimum}, {min_index})")
 
 
 def find_max(weather_data):
@@ -99,7 +110,8 @@ def find_max(weather_data):
     Returns:
         The maximum value and it's position in the list.
     """
-    pass
+    maximum= max(weather_data)
+    return (maximum)
 
 
 def generate_summary(weather_data):
@@ -125,20 +137,22 @@ def generate_daily_summary(weather_data):
     pass
 #referencing above functions, check expected outputs
 
-Weather_data = [
-['date','min','max'],
-['2020-06-19T07:00:00+08:00',47,46],
-['2020-06-20T07:00:00+08:00',51,67],
-['2020-06-21T07:00:00+08:00',58,72],
-['2020-06-22T07:00:00+08:00',59,71],
-['2020-06-23T07:00:00+08:00',52,71],
-['2020-06-24T07:00:00+08:00',52,67],
-['2020-06-25T07:00:00+08:00',48,66],
-['2020-06-26T07:00:00+08:00',53,66]
-]
+#Weather_data = [
+#['date','min','max'],
+#['2020-06-19T07:00:00+08:00',47,46],
+#['2020-06-20T07:00:00+08:00',51,67],
+#['2020-06-21T07:00:00+08:00',58,72],
+#['2020-06-22T07:00:00+08:00',59,71],
+#['2020-06-23T07:00:00+08:00',52,71],
+#['2020-06-24T07:00:00+08:00',52,67],
+#['2020-06-25T07:00:00+08:00',48,66],
+#['2020-06-26T07:00:00+08:00',53,66]
+#]
 
-iso_string = '2020-06-19T07:00:00+08:00'
-print (convert_date(iso_string))
+#iso_string = '2020-06-19T07:00:00+08:00'
+
+
+#print (convert_date(iso_string))
 #print(Weather_data)
 #can use to check all functions, make sure to comment or delet before running/ submitting tents
 #list of min or max temp, sometimes string so make sure int or float
