@@ -96,3 +96,14 @@ for item in names: #iterating over a list
     names[item]+=1
 for key, value in names.items(): #accessing the dict of colour counts using the name of the colour. Changing the value of that partic colour
     print(f"{key}: {value}")
+
+
+
+return (minimum, min_position)
+    if len(weather_data) == 0:
+        return()
+    for i in range(0,len(weather_data)):
+        max = round(float(max(weather_data)),1)
+        max1 = weather_data.reverse()
+        max1 = len(weather_data) - weather_data.index(max(weather_data)) -1
+        return(max, max1)
